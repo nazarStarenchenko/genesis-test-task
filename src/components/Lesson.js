@@ -17,7 +17,6 @@ export default function Lesson ({
 	const [isVideoLoaded, setIsVideoLoaded] = useState(false);
 
 	const onLoadedData = () => {
-		console.log("oaded§§")
     	setIsVideoLoaded(true);
   	}
 
@@ -36,7 +35,7 @@ export default function Lesson ({
 					<ReactPlayer playing={isVideoLoaded} muted={true}
 					url={videoLink} controls={true} className="video" onReady={onLoadedData} />
 					:
-					<ReactPlayer url={videoLink} controls={true} className="video" />
+					<ReactPlayer url={videoLink} controls={true} className="video" onReady={onLoadedData}/>
 				)
 			}
 
