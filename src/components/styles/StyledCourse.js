@@ -4,7 +4,6 @@ import styled from "styled-components";
 export const StyledCourse = styled.div`
 	
 	width: 400px;
-	height: 500px;
 
 	border: 0.2px solid #d0d0d0;
 	border-radius: 50px;
@@ -65,14 +64,25 @@ export const StyledCourse = styled.div`
 	}
 
 	ul {
-		text-align: center;
+		display: flex;
+		flex-flow: row wrap;
+		justify-content: center;
 		color: #6c6c6c;
+		width: 100%;
+		width: 90%;
+		margin-left: 5%;
 	}
 
 	li {
 		list-style-type: none;
+		display: inline-block;
+		margin: 5px 5px;
+		border: 0.2px solid #696969;
+		border-radius: 20px;
+		padding: 7px;
+		text-align: center;
+		font-size: 14px;
 	}
-
 
 
 `;

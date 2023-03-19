@@ -1,6 +1,8 @@
+import { useState } from "react";
+import ReactPlayer from 'react-player';
+
 import { StyledLesson } from "./styles/StyledLesson";
 import { AiTwotoneLock } from 'react-icons/ai';
-import { useState } from "react";
 
 export default function Lesson ({
 								tittle,
@@ -11,8 +13,13 @@ export default function Lesson ({
 							  }) {
 
 
+	const [isFirstVideo, setIsFirstVideo] = useState(order === 1 ? true : false);
+	const [isVideoLoaded, setIsVideoLoaded] = useState(false);
 
-	const [showVideo, setShowVideo] = useState(order === 1 ? true : false);
+	const onLoadedData = () => {
+		console.log("oaded§§")
+    	setIsVideoLoaded(true);
+  	}
 
 	return (
 		<StyledLesson>
@@ -21,19 +28,15 @@ export default function Lesson ({
 				status === "locked" ?
 				<button className="btn"> <AiTwotoneLock className="icon"/> Lesson is blocked </button> 
 				: 
-				<button className="btn hoverable" onClick={() => setShowVideo(oldValue => !oldValue)}>Show lesson</button>
+				<button className="btn hoverable" onClick={() => setIsFirstVideo(oldValue => !oldValue)}>Show lesson</button>
 			}
-
 			{
-				(status !== "locked" && showVideo)  &&
-				(
-				<video controls 
-					poster={`${imageLink}/lesson-${order}.webp`} 
-					autoPlay={order === 1 ? true : false}
-					muted={order === 1 ? true : false}
-				>
-	    			<source src={videoLink} type="application/x-mpegURL" />
-				</video>
+				(status !== "locked" && isFirstVideo) &&
+				(	order === 1 ? 
+					<ReactPlayer playing={isVideoLoaded} muted={true}
+					url={videoLink} controls={true} className="video" onReady={onLoadedData} />
+					:
+					<ReactPlayer url={videoLink} controls={true} className="video" />
 				)
 			}
 

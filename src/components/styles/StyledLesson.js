@@ -49,10 +49,11 @@ export const StyledLesson = styled.div`
 		padding-top: 3px;
 	}
 	
-	video  {
+	.video  {
 		width: 50%;
 		height: auto;
 		border-radius: 10px;	
+		outline: none;
 	}
 
 
